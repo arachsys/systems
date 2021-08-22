@@ -1,0 +1,18 @@
+System binaries and config
+==========================
+
+Each system has its own top-level directory containing bootloader files, a
+kernel image and config, firmware blobs, and any system-specific notes.
+
+The kernel image plus any bootloader binaries and config are in the boot/
+subdirectory, matching /boot/ on the host. These files might not be freely
+redistributable.
+
+Kernels are compiled from the mainline version identified in the header
+comment of 'config', patched by the Arachsys Linux pkg/linux recipe. For
+ease-of-comparison, this config file is reduced with 'make savedefconfig'
+and must be expanded with 'make olddefconfig' before building the kernel.
+
+Binary firmware needed by the kernel is in the firmware/ subdirectory,
+referenced as ../firmware in CONFIG_EXTRA_FIRMWARE_DIR. All required blobs
+are built into the kernel image with CONFIG_EXTRA_FIRMWARE.
